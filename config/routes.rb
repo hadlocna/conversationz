@@ -4,7 +4,7 @@ Conversationz::Application.routes.draw do
   resources :projects
   resources :words
 
-  root to: 'user#index'
+  root to: 'users#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
