@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 20131221174257) do
   add_index "projects", ["user_id"], name: "index_projects_on_user_id"
 
   create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password"
+    t.string   "name",            null: false
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,14 @@
+<div class="container">
+
+  <%= form_for :user, :url => { :action => "login" } do |f|%>
+
+    <%= f.label :email %>:
+    <%= f.text_field :email %><br>
+
+    <%= f.label :password %>:
+    <%= f.password_field :password %><br>
+
+    <%= f.submit "Login", :id=> "login" %>
+  <% end %>
+
+</div>
