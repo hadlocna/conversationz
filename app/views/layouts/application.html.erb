@@ -7,8 +7,25 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class = "nav_bar">
+    <% if session[:current_user_id] != nil %>
+      <li><a class='align-center title' href='/'>Conversationz</a></li>
+      <%= form_for :user, :url => { :action => "logout", :controller => "users" } do |f| %>
+      <li><a><%= f.submit "Logout", :id=> "logout" %></a></li>
+      <li><a class='align-right nav-link' <%= link_to("Create Conversationz", projects_new_path) %> ></a></li>
+      <li><a class='align-right nav-link' <%= link_to("My Conversationz", my_projects_path) %> ></a></li>
+      <% end %>
+    <% else %>
+    <li><a class='align-center title' href='/'>Conversationz</a></li>
+      <li><a class='align-right nav-link' <%= link_to("Login", login_path) %> ></a></li>
+     <li><a class='align-right nav-link'<%= link_to("Sign Up", new_user_path) %> ></a></li>
+    <% end %>
+  </div>
 
 <%= yield %>
 
 </body>
+<div id="footer">
+  <section>Designed by Hadlock.co</section>
+</div>
 </html>
