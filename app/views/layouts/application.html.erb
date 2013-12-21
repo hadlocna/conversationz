@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Conversationz</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <title>SoundingBoard</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div class = "nav_bar">
+
+
     <% if session[:current_user_id] != nil %>
       <li><a class='align-center title' href='/'>Conversationz</a></li>
       <%= form_for :user, :url => { :action => "logout", :controller => "users" } do |f| %>
       <li><a><%= f.submit "Logout", :id=> "logout" %></a></li>
-      <li><a class='align-right nav-link' <%= link_to("Create Conversationz", projects_new_path) %> ></a></li>
-      <li><a class='align-right nav-link' <%= link_to("My Conversationz", my_projects_path) %> ></a></li>
+      <li><a class='align-right nav-link' <%= link_to("Create Project", projects_new_path) %> ></a></li>
+      <li><a class='align-right nav-link' <%= link_to("My Projects", projects_show_path) %> ></a></li>
       <% end %>
     <% else %>
     <li><a class='align-center title' href='/'>Conversationz</a></li>
@@ -24,7 +26,9 @@
 
 <%= yield %>
 
+
 </body>
+
 <div id="footer">
   <section>Designed by Hadlock.co</section>
 </div>

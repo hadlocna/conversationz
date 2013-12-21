@@ -1,0 +1,11 @@
+<div class="container">
+  <h2>Posts containing <%= @query %></h2>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <%= link_to(post.title, post) %><br />
+        <%= post.motivation %>
+      </li>
+    <% end %>
+  </ul>
+</div>

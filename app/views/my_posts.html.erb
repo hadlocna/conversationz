@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>Your Posts</h2><br>
+  <% unless @my_posts.nil? %>
+    <% @my_posts.each do |post| %>
+      <%= link_to post.title, post %><br>
+    <% end %>
+  <% end %>
+
+</div>

@@ -9,34 +9,52 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended that you check this file into your version control system.
+# It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131221174257) do
+ActiveRecord::Schema.define(:version => 20131120210331) do
 
-  create_table "projects", force: true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "comment_votes", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "comment_id", :null => false
+    t.boolean  "is_up_vote", :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
-
-  create_table "users", force: true do |t|
-    t.string   "name",            null: false
-    t.string   "email",           null: false
-    t.string   "password_digest", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "body"
+    t.integer  "song_id"
+    t.integer  "post_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  create_table "words", force: true do |t|
-    t.string   "name"
-    t.integer  "project_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "posts", :force => true do |t|
+    t.string   "title",      :null => false
+    t.text     "motivation"
+    t.integer  "user_id",    :null => false
+    t.integer  "song_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "words", ["project_id"], name: "index_words_on_project_id"
+  create_table "songs", :force => true do |t|
+    t.string   "short_url",  :null => false
+    t.string   "title",      :null => false
+    t.string   "artist"
+    t.string   "album"
+    t.integer  "year"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name",            :null => false
+    t.string   "email",           :null => false
+    t.string   "password_digest", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
 end

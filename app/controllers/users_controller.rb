@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-
   def new
+
   end
 
   def create
@@ -40,6 +40,22 @@ class UsersController < ApplicationController
   def logout
     logout_user
     redirect_to "/"
+  end
+
+  def show
+
+  end
+
+  def edit
+
+  end
+
+  def update
+
+  end
+
+  def destroy
+
   end
 
 end

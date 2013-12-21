@@ -1,0 +1,41 @@
+
+    <h3><%= @post.title %></h3>
+
+    <h4><%= @song.title %></h4>
+
+    <p><strong><%= @post.motivation if @post.motivation %></strong></p>
+    <br>
+    <div id="#post_song_embed"><embed src ="<%= @song.short_url %>"></div>
+    <br>
+
+    <div class="comment_display_section">
+      <% @comments.each do |comment| %>
+        <p>Author: <%= comment.user.name %></p>
+        <p><%= "Comment: #{comment.body}" if comment.body %></p>
+
+        <% if comment.song %>
+          <p><%= "Recommends: #{comment.song.title}" %></p>
+          <embed src="<%= comment.song.short_url %>">
+        <% end %>
+
+        <% upvotes = comment.comment_votes.select { |vote| vote.is_up_vote }.length %>
+        <% downvotes = comment.comment_votes.select { |vote| !vote.is_up_vote }.length %>
+
+        <p>Votes: +:<span class="upvote_count"><%= "#{upvotes}"%></span> / -: <span class="downvote_count"><%= "#{downvotes}" %></span>
+          <%= link_to(
+            "Upvote",
+            "/comments/#{comment.id}/upvote",
+             :method => "post",
+             :remote => true,
+             :class => "upvote_link"
+          ) %>
+          <%= link_to(
+            "Downvote",
+            "/comments/#{comment.id}/downvote",
+            :method => "post",
+            :remote => true,
+            :class => "downvote_link"
+          ) %>
+        </p><br>
+      <% end %>
+    </div>

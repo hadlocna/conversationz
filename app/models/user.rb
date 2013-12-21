@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password
   has_many :projects
+  has_many :words
   has_many :words, :through => :projects
 
   validates :email, :uniqueness => true
